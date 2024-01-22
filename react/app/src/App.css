@@ -1,0 +1,60 @@
+.content {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+
+.content-header {
+  text-align: center;
+}
+
+.content-chat {
+  flex-grow: 1;
+  overflow: auto;
+}
+
+.content-input {
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column; /* 列方向に配置 */
+  justify-content: flex-end; /* 下寄せに配置 */
+}
+
+.menu {
+  background-color: lightsteelblue;
+  overflow: auto;
+  height: 100vh;
+}
+
+.menu-item {
+  width: 100%;
+  height: 50px;
+  text-align: left;
+}
+
+.menu-chat-button {
+  text-align: left;
+  width: 80%;
+}
+
+.history-text {
+  white-space:  pre-wrap;
+  padding: 20px;
+}
+
+.history-ai {
+  background-color: aliceblue;
+}
+
+.history-human {
+  background-color: white;
+}
+
+.avatar-ai {
+  background-color: deepskyblue;
+}
+
+.avatar-human {
+  background-color: indigo;
+}
