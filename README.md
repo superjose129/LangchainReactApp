@@ -1,28 +1,24 @@
-# LangChainReactChatApp
+ LangChainReactChatApp
 
-LangChainでアプリを作成するときのひな形として、Flask + React + Dockerで単純なチャットアプリを作成しました。
+As a template for creating an app with LangChain, I have developed a simple chat application using Flask + React + Docker.
 
-# 動かし方
-python(Flask + LangChain)とReactの開発・動作用のコンテナをbuildし起動します。  
-LangChainを動かすためにOpenAIのAPI Keyが必要です。  
+How to Run
+Build and launch containers for python (Flask + LangChain) and React.
+To run LangChain, you will need an API Key from OpenAI.
 
-```
-# python(Flask + LangChain)用コンテナのbuild
+# Build container for python (Flask + LangChain)
 docker build -t lc-python -f python/Dockerfile .
 
-# python(Flask + LangChain)用コンテナの起動
-# OPENAI_API_KEYにOpenAIのAPI Keyを指定
+# Launch container for python (Flask + LangChain)
+# Specify your OpenAI API Key with OPENAI_API_KEY
 docker run --rm -it -e OPENAI_API_KEY=${OPENAI_API_KEY} -v $(pwd)/python:/python -p 8080:8080 lc-python python app.py
 
-# React用コンテナのbuild
+# Build container for React
 docker build -t lc-react -f react/Dockerfile .
 
-# React用コンテナのnpmパッケージをインストール
+# Install npm packages in the React container
 docker run --rm -it -p 5173:5173 -v $(pwd)/react:/react lc-react bash -c "cd app && yarn install"
 
-# React用コンテナの起動
-# VITE_API_ENDPOINTにはpython(Flask + LangChain)用コンテナを指定
+# Launch React container
+# Specify the python (Flask + LangChain) container as VITE_API_ENDPOINT
 docker run --rm -it -p 5173:5173 -v $(pwd)/react:/react -e VITE_API_ENDPOINT=http://localhost:8080 lc-react bash -c "cd app && yarn dev --host 0.0.0.0"
-```
-
-python(Flask + LangChain)とReactのコンテナを起動が完了すればブラウザのhttp://localhost:5173/からチャットアプリにアクセスできます。
